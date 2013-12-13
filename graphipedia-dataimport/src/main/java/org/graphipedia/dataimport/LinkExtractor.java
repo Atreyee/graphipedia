@@ -52,13 +52,11 @@ public class LinkExtractor extends SimpleStaxParser {
     @Override
     protected void handleElement(String element, String value) {
         if ("page".equals(element)) {
-            if (!title.contains(":")) {
                 try {
                     writePage(title, text);
                 } catch (XMLStreamException streamException) {
                     throw new RuntimeException(streamException);
                 }
-            }
             title = null;
             text = null;
         } else if ("title".equals(element)) {
@@ -95,12 +93,12 @@ public class LinkExtractor extends SimpleStaxParser {
             Matcher matcher = LINK_PATTERN.matcher(text);
             while (matcher.find()) {
                 String link = matcher.group(1);
-                if (!link.contains(":")) {
+                
                     if (link.contains("|")) {
                         link = link.substring(link.lastIndexOf('|') + 1);
                     }
                     links.add(link);
-                }
+                
             }
         }
         return links;
