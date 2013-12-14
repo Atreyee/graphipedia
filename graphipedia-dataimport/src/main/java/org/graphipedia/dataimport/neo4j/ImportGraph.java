@@ -48,7 +48,7 @@ public class ImportGraph {
         });
 
         index = indexProvider.nodeIndex("pages", MapUtil.stringMap("type", "exact", "to_lower_case", "false"));
-        inMemoryIndex = new HashMap<String, Long>(12100000);
+        inMemoryIndex = new HashMap<String, Long>(35000000);
     }
 
     public static void main(String[] args) throws Exception {
